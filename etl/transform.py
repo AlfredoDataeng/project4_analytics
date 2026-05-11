@@ -34,7 +34,7 @@ def transform_sales_data(df):
         # --- impossible to calculate profit margin there is no cost price --------------------
         
         # ---  ------------------------------------------------------------
-        
+        logging.info("Data transformed sucessfully!")
         return df
     except Exception as e:
         logging.error(f"Data transformation failed: {e}")
