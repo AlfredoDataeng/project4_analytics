@@ -31,9 +31,20 @@ def transform_sales_data(df):
         df["order_year"] = df["Order Date"].dt.year
         df["order_month"] = df["Order Date"].dt.month
         df["shipping_days"] = df["Ship Date"] - df["Order Date"]
+        
+        # --- turning shipping_day from deltatime to number
+        df["shipping_days"] = df["shipping_days"].dt.days
         # --- impossible to calculate profit margin there is no cost price --------------------
         
-        # ---  ------------------------------------------------------------
+        # --- Normalizing coluns name ------------------------------------------------------------
+        df.columns = (
+            df.columns
+            .str.strip()
+            .str.lower()
+            .str.replace(" ", "_")
+            .str.replace("-", "_")
+        )
+        
         logging.info("Data transformed sucessfully!")
         return df
     except Exception as e:
